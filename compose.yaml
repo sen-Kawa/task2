@@ -1,0 +1,20 @@
+services:
+  mongo:
+    image: mongo
+    container_name: mongodb
+
+  data_retrieval:
+    build: ./data_retrieval_script
+    depends_on:
+      - mongo
+
+  fastapi:
+    build: ./fastapi
+    container_name: fastapi
+    ports: 
+      - "8000:8000"
+    depends_on:
+      - mongo
+      - data_retrieval
+    command: bash -c "uvicorn main:app --host 0.0.0.0 --port 8000"
+
