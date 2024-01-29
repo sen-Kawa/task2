@@ -1,4 +1,6 @@
 import requests
+import csv
+from io import StringIO
 from pymongo import MongoClient
 
 mongo_host='mongo'
@@ -12,18 +14,21 @@ turbines = db['turbines_data']
 def fetch_data(api_url):
     response = requests.get(api_url)
     if response.status_code == 200:
-        return response.json()
+        return response.text
     else:
         print("Failed to fetch data.")
         return None
 
 def store_data(turbine_id, data):
     if (data):
+        csv_reader = csv.DictReader(StringIO(data), fieldnames=None, delimiter=';', skipinitialspace=True)
+
         newData = []
-        for item in data:
+        for item in csv_reader:
             item["turbineId"] = turbine_id
             newData.append(item)
             
+        print(newData)
         result = turbines.insert_many(newData)
         
         print("Data stored succesfully.")
@@ -31,8 +36,8 @@ def store_data(turbine_id, data):
         print("No data to store.")
 
 api_map = {
-        1: 'https://nextcloud.turbit.com/s/GTbSwKkMnFrKC7A',
-        2: 'https://nextcloud.turbit.com/s/G3bwdkrXx6Kmxs3'
+        1: 'https://nextcloud.turbit.com/s/GTbSwKkMnFrKC7A/download/Turbine1.csv',
+        2: 'https://nextcloud.turbit.com/s/G3bwdkrXx6Kmxs3/download/Turbine2.csv'
 }
 
 for turbine_id, api_url in api_map.items():
@@ -40,3 +45,5 @@ for turbine_id, api_url in api_map.items():
     store_data(turbine_id, api_data)
 
 client.close()
+
+print('SCRIPT RUN')
