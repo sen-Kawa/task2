@@ -23,7 +23,7 @@ def fetch_data(api_url):
 def store_data(turbine_id, data):
     if (data):
         csv_reader = csv.DictReader(StringIO(data), fieldnames=None, delimiter=';', skipinitialspace=True)
-
+        next(csv_reader, None)
         newData = []
         for item in csv_reader:
             item["Dat/Zeit"] = datetime.strptime(item["Dat/Zeit"], "%d.%m.%Y, %H:%M")
