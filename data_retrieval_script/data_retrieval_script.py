@@ -1,5 +1,6 @@
 import requests
 import csv
+from datetime import datetime
 from io import StringIO
 from pymongo import MongoClient
 
@@ -25,10 +26,10 @@ def store_data(turbine_id, data):
 
         newData = []
         for item in csv_reader:
+            item["Dat/Zeit"] = datetime.strptime(item["Dat/Zeit"], "%d.%m.%Y, %H:%M")
             item["turbineId"] = turbine_id
             newData.append(item)
             
-        print(newData)
         result = turbines.insert_many(newData)
         
         print("Data stored succesfully.")
