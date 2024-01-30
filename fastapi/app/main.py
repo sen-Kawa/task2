@@ -10,20 +10,18 @@ mongo_db = 'turbit'
 client = MongoClient(mongo_host, mongo_port)
 db = client[mongo_db]
 
-def retrieve_data():
+def retrieve_data(turbineId: int):
     turbines = db['turbines_data']
     data = []
-    for item_data in turbines.find():
+    for item_data in turbines.find({"turbineId": turbineId}):
         del item_data['_id']
         data.append(item_data)
-        print("AAAA")
-    print(data)    
     return data
 
 @app.get("/")
 def index():
     return {"Task": "Time Series Data Handling and API Development"}
 
-@app.get("/retrieve_data")
-def turbines():
-    return retrieve_data()
+@app.get("/turbines/{turbineId}")
+def turbines(turbineId: int):
+    return retrieve_data(turbineId)
