@@ -10,7 +10,7 @@ docker compose up --build
 
 Access FastAPI in your browser `0.0.0.0:8000/docs`
 
-Query data with turbine id and date/time ranges in ISO format 
+Query data with turbine id and date/time ranges in ISO format  
 `http://0.0.0.0:8000/turbines/{TURBINE ID}?start_date=YYYY-MM-DDTHH:MM:SS&end_date=YYYY-MM-DDTHH:MM:SS`
 
 **Example:**
