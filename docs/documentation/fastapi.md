@@ -7,6 +7,6 @@ Connects with mongoDB server using pymongo.
 ### Endpoints
 #### `/turbine-stats`
 Allows the retrieval of data based on optional url query parameters:
-- `turbine_id`
-- `start_date`
-- `end_date` 
+- `turbine_id` integer
+- `start_date` ISO format date
+- `end_date` ISO format date
