@@ -6,7 +6,7 @@ Connects with mongoDB server using pymongo.
 - `retrieve_data(query)`: Retrieves data from the data base and exposes it based on the query.
 ### Endpoints
 #### `/turbine-stats`
-Allows the retrieval of data based on optional query url parameters:
+Allows the retrieval of data based on optional url query parameters:
 - `turbine_id`
 - `start_date`
 - `end_date` 
