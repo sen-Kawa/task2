@@ -3,7 +3,7 @@
 ### Connection
 Connects with mongoDB server using pymongo.
 ### Function definition
-- `retrieve_data(turbineId)`: Retrieves data from the data base and exposes it based on the query.
+- `retrieve_data(query)`: Retrieves data from the data base and exposes it based on the query.
 ### Endpoints
 #### `/turbine-stats`
 Allows the retrieval of data based on optional parameters:
