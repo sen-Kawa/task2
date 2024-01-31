@@ -25,6 +25,9 @@ http://0.0.0.0:8000/turbine-stats/?turbine_id=1
 http://0.0.0.0:8000/turbine-stats/?turbine_id=1&start_date=2016-01-26T00:00:00
 ```
 ```
+http://0.0.0.0:8000/turbine-stats/?start_date=2016-01-26T00:00:00
+```
+```
 http://0.0.0.0:8000/turbine-stats/?turbine_id=1&start_date=2016-01-26T00:00:00&end_date=2016-01-27T23:49:59
 ```
 ### To interact with MongoDB
